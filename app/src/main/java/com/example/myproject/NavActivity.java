@@ -1,6 +1,7 @@
 
 package com.example.myproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -71,6 +72,9 @@ public class NavActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_loanCalculate) {
+
+            Intent loanIntent = new Intent(this, LoanCalculateActivity.class);
+
 
         } else if (id == R.id.nav_gallery) {
 
