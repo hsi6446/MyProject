@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myproject.Camera.CameraActivity;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mButton;
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, CameraActivity.class);
+        Intent intent = new Intent(this, LoanCalculateActivity.class);
 
         startActivity(intent);
     }
