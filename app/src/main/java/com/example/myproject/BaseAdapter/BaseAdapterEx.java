@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class BaseAdapterEx extends BaseAdapter {
 
+
     Context mContext;
     ArrayList<Student> mData;
     LayoutInflater mLayoutInflater;
@@ -25,6 +26,13 @@ public class BaseAdapterEx extends BaseAdapter {
         mContext = context;
         mData = data;
         mLayoutInflater = LayoutInflater.from(mContext);
+    }
+
+    class ViewHolder{
+        TextView mNameTextView;
+        TextView mNumberTextView;
+        TextView departmentTextView;
+
     }
 
     @Override
@@ -45,18 +53,29 @@ public class BaseAdapterEx extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        //1. 리스트의 한 항목에 해당하는 레이아웃을 생성한다.
 
-        View itemLayout = mLayoutInflater.inflate(R.layout.list_view_item_layout, null);
-        TextView nameTextView = (TextView)itemLayout.findViewById(R.id.tv_name);
-        TextView numberTextView = (TextView)itemLayout.findViewById(R.id.tv_number);
-        TextView departmentTextView = (TextView)itemLayout.findViewById(R.id.tv_department);
+        //1. 어댑터뷰가 재사용할 뷰를 넘겨주지 않은 경우에만 새로운 뷰를 생성한다.
+        View itemLayout = convertView;
+        ViewHolder viewHolder = null;
+
+        if (itemLayout == null) {
+            itemLayout = mLayoutInflater.inflate(R.layout.list_view_item_layout, null);
+
+            viewHolder = new ViewHolder();
+            viewHolder.mNameTextView = (TextView)itemLayout.findViewById(R.id.tv_name);
+            viewHolder.mNumberTextView = (TextView)itemLayout.findViewById(R.id.tv_number);
+            viewHolder.departmentTextView = (TextView)itemLayout.findViewById(R.id.tv_department);
+
+            itemLayout.setTag(viewHolder);
+        }else {
+            viewHolder = (ViewHolder)itemLayout.getTag();
+        }
+
 
         // 2. 이름, 학과, 번호 데이터를 참조하여 레이아웃을 갱신한다.
-
-        nameTextView.setText(mData.get(position).mName);
-        numberTextView.setText(mData.get(position).mNumber);
-        departmentTextView.setText(mData.get(position).mDepartment);
+        viewHolder.mNameTextView.setText(mData.get(position).mName);
+        viewHolder.mNumberTextView.setText(mData.get(position).mNumber);
+        viewHolder.departmentTextView.setText(mData.get(position).mDepartment);
 
 
         return itemLayout;
