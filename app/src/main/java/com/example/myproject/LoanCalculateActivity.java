@@ -38,6 +38,8 @@ public class LoanCalculateActivity extends AppCompatActivity implements View.OnC
         mDatePick = (TextView)findViewById(R.id.tv_year_pick);
         mAmount = (EditText)findViewById(R.id.et_amount);
 
+
+
         mAddition = (Button)findViewById(R.id.btn_addition);
 
         mDatePick.setOnClickListener(this);
@@ -63,9 +65,20 @@ public class LoanCalculateActivity extends AppCompatActivity implements View.OnC
 
                 break;
             case R.id.btn_addition:
+                calculate();
 
                 break;
 
         }
+    }
+
+    public int calculate() {
+        int result = 0;
+
+
+
+
+
+        return result;
     }
 }
